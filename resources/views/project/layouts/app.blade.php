@@ -33,13 +33,13 @@
 		<!-- Main Wrapper -->
 		<div class="main-wrapper">
 		
-            @include('frontend.layouts.header')
+            @include('project.layouts.header')
 
 			@section('main-content')
                 
             @show
 		   
-            @include('frontend.layouts.footer')
+            @include('project.layouts.footer')
             
 
 	   </div>

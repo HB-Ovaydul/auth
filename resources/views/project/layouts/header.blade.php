@@ -15,7 +15,7 @@
 					</div>
 					<div class="main-menu-wrapper">
 						<div class="menu-header">
-							<a href="" class="menu-logo">
+							<a href="{{ route('show.home.page') }}" class="menu-logo">
 								<img src="frontend/assets/img/logo.png" class="img-fluid" alt="Logo">
 							</a>
 							<a id="menu_close" class="menu-close" href="javascript:void(0);">
@@ -24,7 +24,7 @@
 						</div>
 						<ul class="main-nav">
 							<li class="active">
-								<a href="">Home</a>
+								<a href="{{ route('show.home.page') }}">Home</a>
 							</li>
 							<li class="has-submenu">
 								<a href="#">Doctors <i class="fas fa-chevron-down"></i></a>
@@ -49,11 +49,11 @@
 									<li><a href="booking.html">Booking</a></li>
 									<li><a href="checkout.html">Checkout</a></li>
 									<li><a href="booking-success.html">Booking Success</a></li>
-									<li><a href="">Patient Dashboard</a></li>
+									<li><a href="{{ route('patient.desh.page') }}">Patient Dashboard</a></li>
 									<li><a href="favourites.html">Favourites</a></li>
 									<li><a href="chat.html">Chat</a></li>
-									<li><a href="">Profile Settings</a></li>
-									<li><a href="">Change Password</a></li>
+									<li><a href="{{ route('patient.profile.page') }}">Profile Settings</a></li>
+									<li><a href="{{ route('patient.change.password-page') }}">Change Password</a></li>
 								</ul>
 							</li>	
 							<li class="has-submenu">
@@ -97,7 +97,7 @@
 						</li>
 
 						
-						<li class="nav-item dropdown has-arrow logged-item">
+						{{-- <li class="nav-item dropdown has-arrow logged-item">
 							<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
 								<span class="user-img">
 									<img class="rounded-circle" src="" width="31" alt="Ryan Taylor">
@@ -118,11 +118,11 @@
 								<a class="dropdown-item" href="">Logout</a>
 							</div>
 						</li>
-					
+					 --}}
 
 						
 						<li class="nav-item">
-							<a class="nav-link header-login" href="">login / Signup </a>
+							<a class="nav-link header-login" href="{{ route('show.login.page') }}">login / Signup </a>
 						</li>
 						
 					</ul>
