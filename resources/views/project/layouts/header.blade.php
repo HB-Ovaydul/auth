@@ -80,9 +80,6 @@
 							<li>
 								<a href="admin/index.html" target="_blank">Admin</a>
 							</li>
-							<li class="login-link">
-								<a href="">Login / Signup</a>
-							</li>
 						</ul>		 
 					</div>		 
 					<ul class="nav header-navbar-rht">
@@ -95,35 +92,35 @@
 								<p class="contact-info-header"> +1 315 369 5943</p>
 							</div>
 						</li>
+					@if(!Auth::guard('patient')->check())
+					<li class="nav-item">
+						<a class="nav-link header-login" href="{{route('show.login.page')}}">login / Signup </a>
+					</li>
+					@endif
 
-						
-						{{-- <li class="nav-item dropdown has-arrow logged-item">
-							<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-								<span class="user-img">
-									<img class="rounded-circle" src="" width="31" alt="Ryan Taylor">
-								</span>
-							</a>
-							<div class="dropdown-menu dropdown-menu-right">
-								<div class="user-header">
-									<div class="avatar avatar-sm">
-										<img src="" alt="User Image" class="avatar-img rounded-circle">
-									</div>
-									<div class="user-text">
-										<h6>Richard Wilson</h6>
-										<p class="text-muted mb-0">Patient</p>
-									</div>
+					@if(Auth::guard('patient')->check())
+					<li class="nav-item dropdown has-arrow logged-item">
+						<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+							<span class="user-img">
+								<img class="rounded-circle" src="" width="31" alt="Ryan Taylor">
+							</span>
+						</a>
+						<div class="dropdown-menu dropdown-menu-right">
+							<div class="user-header">
+								<div class="avatar avatar-sm">
+									<img src="" alt="User Image" class="avatar-img rounded-circle">
 								</div>
-								<a class="dropdown-item" href="patient-dashboard.html">Dashboard</a>
-								<a class="dropdown-item" href="">Profile Settings</a>
-								<a class="dropdown-item" href="">Logout</a>
+								<div class="user-text">
+									<h6>Richard Wilson</h6>
+									<p class="text-muted mb-0">Patient</p>
+								</div>
 							</div>
-						</li>
-					 --}}
-
-						
-						<li class="nav-item">
-							<a class="nav-link header-login" href="{{ route('show.login.page') }}">login / Signup </a>
-						</li>
+							<a class="dropdown-item" href="{{ route('patient.desh.page') }}">Dashboard</a>
+							<a class="dropdown-item" href="{{ route('patient.profile.page') }}">Profile Settings</a>
+							<a class="dropdown-item" href="{{ route('patient.logout') }}">Logout</a>
+						</div>
+					</li>
+					@endif
 						
 					</ul>
 				</nav>

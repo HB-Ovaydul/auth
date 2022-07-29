@@ -33,19 +33,22 @@
 									<div class="row">
 										<div class="col-md-12 col-lg-6">
 										
+											@include('project.validate')
 											<!-- Change Password Form -->
-											<form>
+											<form action="{{ route('patient.change.password') }}" method="POST">
+												@csrf
 												<div class="form-group">
 													<label>Old Password</label>
-													<input type="password" class="form-control">
+													<input id="pass" name="old_password" type="password" class="form-control">
+													<input class="show_pass" type="checkbox"> <span>Show Password</span>
 												</div>
 												<div class="form-group">
 													<label>New Password</label>
-													<input type="password" class="form-control">
+													<input name="new_password" type="password" class="form-control">
 												</div>
 												<div class="form-group">
 													<label>Confirm Password</label>
-													<input type="password" class="form-control">
+													<input name="password_confirmation" type="password" class="form-control">
 												</div>
 												<div class="submit-section">
 													<button type="submit" class="btn btn-primary submit-btn">Save Changes</button>
@@ -63,4 +66,5 @@
 
 			</div>		
 			<!-- /Page Content -->
+
 @endsection

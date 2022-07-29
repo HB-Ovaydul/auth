@@ -50,7 +50,7 @@
 												</a>
 											</li>
 											<li>
-												<a href="index-2.html">
+												<a href="{{ route('patient.logout') }}">
 													<i class="fas fa-sign-out-alt"></i>
 													<span>Logout</span>
 												</a>

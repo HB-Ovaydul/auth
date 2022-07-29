@@ -60,7 +60,7 @@
 
 	
 	<script>
-		$('#show_pass').change(function(){
+		$('.show_pass').change(function(){
 
        let attr = $('#pass').attr('type');
 
