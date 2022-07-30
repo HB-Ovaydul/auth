@@ -4,11 +4,13 @@ namespace App\Http\Controllers\frontend;
 
 use App\Models\patient;
 use Illuminate\Http\Request;
+use App\Notifications\ResetNofify;
 use App\Http\Controllers\Controller;
 
 use function GuzzleHttp\Promise\all;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Patien_reset_password;
 use App\Notifications\PatientAccountNotification;
 
 class PatientController extends Controller
@@ -115,7 +117,7 @@ class PatientController extends Controller
          }
          
       }else{
-         return back()->with('danger','Your Account Not veryfied');
+         return back()->with('danger','Email Or Password incurrent');
       }
     }
 
@@ -159,4 +161,84 @@ class PatientController extends Controller
 
    }
 
+   /**
+    *  Patient Forget Password View page
+    */
+
+    public function Patient_Forget_password_page()
+    {
+      return view('project.forget_pass');
+    }
+   /**
+    *  Patient Reset Password 
+    */
+
+    public function Patient_password_resting(Request $request)
+    {
+     // User Validate Email
+    $this->validate($request,[
+      'email' => 'required|email|exists:patients,email',
+     ]);
+
+     $token = md5(time().rand());
+
+   $notify =  patien_reset_password::create([
+      'email' => $request->email,
+      'access_token' => $token,
+     ]);
+
+     $notify -> notify( new ResetNofify($notify) );
+
+    if($notify){
+      return back()->with('success', 'Veryfied');
+    }else{
+      return back()->with('danger', 'Invaild Token');
+    }
+
+    }
+
+    /**
+     * Show Patient Reset password page
+     */
+
+    public function ShowResetPassword(Request $request, $token = null, $email)
+    {
+      return view('project.resetpage')->with(['access_token' => $token, 'email' => $request->email]);
+    }
+
+    /**
+     *  Resets Password
+     */
+    public function ResetPassword(Request $request)
+    {
+      //Validate
+      $this->validate($request,[
+         'email' => 'required|email|exists:patients',
+         'password' => 'required|confirmed',
+         'password_confirmation' => 'required',
+      ]);
+
+      // User Check
+    $data = patient::where([ 'email' => $request->email, 'token' => $request->token ])->first();
+      if(!$data){
+         return back()->with('danger', 'Invalid Token');
+      }else{
+         patient::where('email', $request -> email)->update([
+            'password'  => Hash::make($request -> password)
+         ]);
+         
+         //patien_reset_password data Delete
+         patien_reset_password::where([
+            'email' => $request -> email,
+         ])->delete();
+
+         return redirect()->route('show.login.page')->with('success', 'Your Password Reset Successful!');
+      }
+
+     
+      
+
+
+
+    }
 }

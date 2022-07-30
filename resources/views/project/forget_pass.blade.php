@@ -11,7 +11,7 @@
 							<div class="account-content">
 								<div class="row align-items-center justify-content-center">
 									<div class="col-md-7 col-lg-6 login-left">
-										<img src="assets/img/login-banner.png" class="img-fluid" alt="Login Banner">	
+										<img src="frontend/assets/img/login-banner.png" class="img-fluid" alt="Login Banner">	
 									</div>
 									<div class="col-md-12 col-lg-6 login-right">
 										<div class="login-header">
@@ -20,13 +20,15 @@
 										</div>
 										
 										<!-- Forgot Password Form -->
-										<form action="https://dreamguys.co.in/demo/doccure/login.html">
+										@include('project.validate')
+										<form action="{{ route('patient.password.reset') }}" method="POST">
+											@csrf
 											<div class="form-group form-focus">
-												<input type="email" class="form-control floating">
+												<input name="email" type="text" class="form-control floating">
 												<label class="focus-label">Email</label>
 											</div>
 											<div class="text-right">
-												<a class="forgot-link" href="login.html">Remember your password?</a>
+												<a class="forgot-link" href="{{ route('show.login.page') }}">Remember your password?</a>
 											</div>
 											<button class="btn btn-primary btn-block btn-lg login-btn" type="submit">Reset Password</button>
 										</form>

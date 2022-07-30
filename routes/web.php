@@ -29,4 +29,7 @@ use App\Http\Controllers\frontend\FrontendController;
  /**
   * Patient Forget password
   */
-//   Route::get('/patient-forget-password', [PatientController::class, 'Patient_Forget_password_page'])->name('patient.forget.password-page')->middleware('admin');
+  Route::get('/patient-forget-password', [PatientController::class,'Patient_Forget_password_page'])->name('patient.forget.password.page')->middleware('admin.rediract');
+  Route::post('/patient-password-reset', [PatientController::class,'Patient_password_resting'])->name('patient.password.reset');
+  Route::get('/patient-access-reset/{email}/{token}', [PatientController::class,'ShowResetPassword'])->name('patient.access.reset');
+  Route::post('/reset-password', [PatientController::class,'ResetPassword'])->name('reset.password');
